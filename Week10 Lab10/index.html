@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table with Form</title>
+ 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2>Table with Form</h2>
+
+
+    <table class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+         
+        </tbody>
+    </table>
+
+   
+    <form id="dataForm">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" required>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="addRow()">Submit</button>
+    </form>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<script>
+    function addRow() {
+       
+        let name = document.getElementById('name').value;
+        let email = document.getElementById('email').value;
+
+      
+        let newRow = document.createElement('tr');
+        newRow.innerHTML = `
+            <td>${uniqueId()}</td>
+            <td>${name}</td>
+            <td>${email}</td>
+        `;
+
+        
+        document.getElementById('tableBody').appendChild(newRow);
+
+        document.getElementById('name').value = '';
+        document.getElementById('email').value = '';
+    }
+
+  
+    function uniqueId() {
+        return '_' + Math.random().toString(22).substr(2, 7);
+    }
+</script>
+
+</body>
+</html>
